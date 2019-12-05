@@ -11,12 +11,14 @@ class GetNumber(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument("image")
     def get(self):
+        try:
+            data = self.parser.parse_args()
+            im =Image.open(request.files["image"])
+            im = im.convert("RGB")
 
-        data = self.parser.parse_args()
-        im =Image.open(request.files["image"])
-        im = im.convert("RGB")
-
-        a = len(find_array(im))
-        b = len(find_array_1(im))
-        mean = (a + b) / 2
-        return int(mean)
+            a = len(find_array(im))
+            b = len(find_array_1(im))
+            mean = (a + b) / 2
+            return int(mean)
+        except:
+            return "metti foto"
