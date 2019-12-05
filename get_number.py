@@ -19,4 +19,4 @@ class GetNumber(Resource):
         a = len(find_array(im))
         b = len(find_array_1(im))
         mean = (a + b) / 2
-        return mean
+        return int(mean)
